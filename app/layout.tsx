@@ -10,23 +10,12 @@ export const metadata: Metadata = {
   title: "Seeds of Life Global - Empowering Children",
   description:
     "Seeds of Life Global empowers children through faith, character development, community service, and lasting impact. Join our mission to raise purpose-driven leaders.",
-  generator: "v0.app",
   icons: {
     icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
+      { url: '/logo.png' },
+      { url: '/logo.png', sizes: '32x32', type: 'image/png' },
     ],
-    apple: "/apple-icon.png",
+    apple: '/logo.png',
   },
 }
 
