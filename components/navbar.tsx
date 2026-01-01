@@ -58,7 +58,7 @@ export function Navbar() {
               className="px-6 py-2 rounded-full font-bold transition-all hover:opacity-90"
               style={{ backgroundColor: '#ffde59', color: '#356033' }}
             >
-              Contact Us
+              Donate Now
             </Link>
           </div>
 
@@ -92,7 +92,7 @@ export function Navbar() {
               className="block bg-secondary text-primary px-6 py-2 rounded-full font-bold hover:bg-yellow-300 transition-colors text-center mt-4"
               onClick={() => setIsOpen(false)}
             >
-              Contact Us
+              DOnate Now!
             </Link>
           </div>
         </div>

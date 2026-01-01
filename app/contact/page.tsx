@@ -51,7 +51,7 @@ export default function ContactPage() {
               </div>
               <h3 className="text-xl font-bold mb-2" style={{ color: '#356033' }}>Location</h3>
               <p style={{ color: '#467a63' }}>Mt. Moriah Campground</p>
-              <p className="text-sm mt-2" style={{ color: '#467a63' }}>Contact for address details</p>
+              <p className="text-sm mt-2" style={{ color: '#467a63' }}>Upper Bagacay, Sibonga, Cebu, Philippines</p>
             </div>
 
             {/* Phone Card */}
@@ -60,8 +60,8 @@ export default function ContactPage() {
                 <Phone className="h-8 w-8" style={{ color: '#ffde59' }} />
               </div>
               <h3 className="text-xl font-bold mb-2" style={{ color: '#356033' }}>Phone</h3>
-              <p style={{ color: '#467a63' }}>Contact us for phone number</p>
-              <p className="text-sm mt-2" style={{ color: '#467a63' }}>Available during business hours</p>
+              <p style={{ color: '#467a63' }}>0920 403 2782</p>
+              <p className="text-sm mt-2" style={{ color: '#467a63' }}>Monday - Saturday | 9:00 AM - 8:00 PM</p>
             </div>
 
             {/* Email Card */}
@@ -70,7 +70,7 @@ export default function ContactPage() {
                 <Mail className="h-8 w-8" style={{ color: '#ffde59' }} />
               </div>
               <h3 className="text-xl font-bold mb-2" style={{ color: '#356033' }}>Email</h3>
-              <p style={{ color: '#467a63' }}>Contact us for email address</p>
+              <p style={{ color: '#467a63' }}>info.seedsoflifeglobal.org</p>
               <p className="text-sm mt-2" style={{ color: '#467a63' }}>We respond within 24 hours</p>
             </div>
           </div>

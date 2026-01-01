@@ -1,4 +1,4 @@
-export const mission = "Our Mission is to raise a generation that lives out its purpose, serves with love, and bears lasting fruit — transforming their communities and inspiring others to do the same."
+export const mission = "At Seeds of Life Global, our mission is to nurture a sense of purpose within every child so that they may grow in faith, character, and confidence to make a difference in the world around them. Rooted in the truth of John 15:5 — “I am the vine; you are the branches…”, we believe that lasting growth and impact come from abiding in Christ."
 
 export const tagline = "Where purpose takes root and lives bear fruit"
 
