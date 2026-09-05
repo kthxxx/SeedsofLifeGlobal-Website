@@ -1,120 +1,33 @@
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
+import Image from "next/image"
+import Link from "next/link"
+import { ArrowDownRight, ArrowUpRight } from "lucide-react"
 import { CTAButton } from "@/components/cta-button"
-import { Sprout, Users, Heart, BookOpen } from "lucide-react"
+import { Footer } from "@/components/footer"
+import { Navbar } from "@/components/navbar"
+import { PartnerLogoLoop } from "@/components/partner-logo-loop"
+import { currentImpact, ministryFocuses, organizationName, programAreas } from "@/lib/data"
 
 export default function HomePage() {
-  return (
-    <>
-      <Navbar />
+  return <><Navbar /><main id="main-content" className="overflow-hidden bg-[#f7f3e9] pt-[4.75rem]">
+    <section className="relative isolate flex min-h-[calc(100svh-4.75rem)] items-end overflow-hidden bg-[#173b2a] text-white"><Image src="/hero-background.jpg" alt="Seeds of Life Global community gathering in a rural Cebu setting" fill priority sizes="100vw" className="-z-20 object-cover object-[center_60%]" /><div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(10,31,21,.9)_0%,rgba(10,31,21,.58)_47%,rgba(10,31,21,.12)_100%)]" /><div className="absolute inset-x-0 bottom-0 -z-10 h-2/5 bg-gradient-to-t from-[#10291e]/85 to-transparent" />
+      <div className="mx-auto w-full max-w-[88rem] px-4 pb-14 pt-24 sm:px-6 sm:pb-20 lg:px-8 lg:pb-20"><div className="max-w-3xl"><p className="eyebrow reveal-up text-[#e8c957]">Seeds of Life Global Inc. · Sibonga, Cebu</p><h1 className="display-type reveal-up-delay mt-6 max-w-3xl text-5xl font-bold leading-[.9] sm:text-7xl lg:text-[clamp(5.25rem,9vw,9rem)]">Planting seeds.<br />Nurturing lives.</h1><p className="reveal-up-delay mt-7 max-w-xl text-base leading-7 text-white/85 sm:text-lg sm:leading-8">A Christian nonprofit organized to support learning, livelihood, community development, environmental care, humanitarian assistance, and partnership.</p><div className="reveal-up-delay mt-9 flex flex-col gap-4 sm:flex-row sm:items-center"><CTAButton href="/programs">Explore our purpose</CTAButton><Link href="/about" className="editorial-link min-h-11 text-white">Who we are <ArrowUpRight aria-hidden="true" className="h-4 w-4" /></Link></div></div></div>
+      <a href="#why-we-exist" className="absolute bottom-7 right-4 hidden min-h-11 items-center gap-3 text-xs font-bold uppercase tracking-[.16em] text-white/80 sm:flex sm:right-6 lg:right-8">Scroll to begin <ArrowDownRight aria-hidden="true" className="h-5 w-5" /></a>
+    </section>
 
-      {/* Hero Section with Background Image */}
-      <div 
-        className="pt-20 relative"
-        style={{
-          minHeight: '600px',
-          backgroundImage: 'url(/hero-background.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'bottom',
-          backgroundAttachment: 'fixed'
-        }}
-      >
-        {/* Overlay for better text readability */}
-        <div 
-          className="absolute inset-0" 
-          style={{ 
-            background: 'linear-gradient(to bottom right, rgba(53, 96, 51, 0.9), rgba(45, 77, 43, 0.85), rgba(30, 58, 31, 0.9))' 
-          }}
-        />
-        
-        {/* Content */}
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
-          <div className="text-center">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 drop-shadow-lg" style={{ color: '#ffde59' }}>
-              Seeds of Life Global
-            </h1>
-            <p className="text-2xl md:text-3xl mb-4 text-white font-light italic drop-shadow-md">
-              Where purpose takes root and lives bear fruit
-            </p>
-            <p className="text-xl md:text-2xl mb-8 text-green-100 italic drop-shadow-md">
-              "I am the vine; you are the branches..." - John 15:5
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
-              <CTAButton href="/about" variant="primary">
-                Learn About Our Mission
-              </CTAButton>
-              <CTAButton href="/involved" variant="secondary">
-                Get Involved
-              </CTAButton>
-            </div>
-          </div>
-        </div>
-      </div>
+    <section id="why-we-exist" className="mx-auto max-w-[88rem] px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-36"><div className="grid gap-10 lg:grid-cols-[.45fr_1fr] lg:gap-20"><div><p className="eyebrow text-[#a75434]">Why we exist</p></div><div><h2 className="display-type max-w-5xl text-4xl font-bold leading-[1.02] text-[#173b2a] sm:text-6xl lg:text-7xl">Growth takes root when people are given room to learn, care, and build together.</h2><p className="mt-8 max-w-2xl text-lg leading-8 text-[#526659]">{organizationName} is organized for educational, social-development, livelihood, environmental, charitable, and humanitarian activities. Its purpose connects children and youth, families, and communities through opportunities for learning and shared care.</p></div></div></section>
 
-      {/* Mission Highlight */}
-      <div className="bg-white py-16">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold mb-6" style={{ color: '#356033' }}>Our Mission</h2>
-          <p className="text-xl leading-relaxed max-w-3xl mx-auto" style={{ color: '#467a63' }}>
-            Our Mission is to raise a generation that lives out its purpose, serves with love, and bears lasting fruit — transforming their communities and inspiring others to do the same.
-          </p>
-        </div>
-      </div>
+    <section className="border-y border-[#173b2a]/15 bg-[#dce5cf] px-4 py-20 sm:px-6 sm:py-28 lg:px-8"><div className="mx-auto max-w-[88rem]"><div className="grid gap-10 lg:grid-cols-[.45fr_1fr] lg:gap-20"><p className="eyebrow text-[#a75434]">Current impact</p><div><h2 className="display-type max-w-5xl text-4xl font-bold leading-[1] text-[#173b2a] sm:text-6xl">Growing purpose through people, place, and partnership.</h2><p className="mt-7 max-w-3xl text-lg leading-8 text-[#526659]">{currentImpact.summary}</p></div></div><div className="mt-12 grid gap-px border border-[#173b2a]/15 bg-[#173b2a]/15 md:grid-cols-3">{currentImpact.stats.map((stat) => <article key={stat.label} className="bg-[#dce5cf] p-7 sm:p-9"><p className="display-type text-5xl font-bold leading-none text-[#173b2a] sm:text-6xl">{stat.value}</p><h3 className="mt-5 text-sm font-bold uppercase tracking-[.1em] text-[#173b2a]">{stat.label}</h3><p className="mt-4 leading-7 text-[#526659]">{stat.detail}</p></article>)}</div><div className="mt-12 grid gap-6 lg:grid-cols-2"><article className="border border-[#173b2a]/15 bg-[#f7f3e9] p-7 sm:p-9"><p className="eyebrow text-[#a75434]">Current program</p><h3 className="display-type mt-5 text-3xl font-bold leading-none text-[#173b2a] sm:text-4xl">{currentImpact.program.title}</h3><p className="mt-4 text-sm font-bold uppercase tracking-[.1em] text-[#526659]">{currentImpact.program.status}</p><p className="mt-5 max-w-xl leading-8 text-[#526659]">{currentImpact.program.description}</p></article><article className="border border-[#173b2a]/15 bg-[#f7f3e9] p-7 sm:p-9"><p className="eyebrow text-[#a75434]">Building for the future</p><h3 className="display-type mt-5 text-3xl font-bold leading-none text-[#173b2a] sm:text-4xl">{currentImpact.mtMoriah.title}</h3><p className="mt-4 text-sm font-bold uppercase tracking-[.1em] text-[#526659]">{currentImpact.mtMoriah.status}</p><p className="mt-5 max-w-xl leading-8 text-[#526659]">{currentImpact.mtMoriah.description}</p></article></div><div className="mt-12 border-t border-[#173b2a]/15 pt-8"><p className="eyebrow text-[#a75434]">Partners</p><div className="mt-5"><PartnerLogoLoop partners={currentImpact.partners} /></div></div></div></section>
 
-      {/* Features Grid */}
-      <div className="py-16" style={{ background: 'linear-gradient(to bottom right, #f0fdf4, #dcfce7)' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-12" style={{ color: '#356033' }}>What We Do</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                icon: Sprout,
-                title: "Faith Formation",
-                description: "Building a strong spiritual foundation rooted in biblical truth"
-              },
-              {
-                icon: Users,
-                title: "Community Service",
-                description: "Hands-on projects that teach children to serve and lead"
-              },
-              {
-                icon: Heart,
-                title: "Character Development",
-                description: "Nurturing values of compassion, integrity, and resilience"
-              },
-              {
-                icon: BookOpen,
-                title: "Mentorship",
-                description: "Guiding young hearts to discover their unique calling"
-              }
-            ].map((feature, index) => (
-              <div key={index} className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-                <div className="rounded-full p-3 w-fit mx-auto mb-4" style={{ backgroundColor: '#356033' }}>
-                  <feature.icon className="h-8 w-8" style={{ color: '#ffde59' }} />
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-center" style={{ color: '#356033' }}>{feature.title}</h3>
-                <p className="text-center" style={{ color: '#467a63' }}>{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+    <section className="border-y border-[#173b2a]/15 bg-[#f0eadc] px-4 py-20 sm:px-6 sm:py-28 lg:px-8"><div className="mx-auto max-w-[88rem]"><div className="grid gap-10 lg:grid-cols-[.45fr_1fr] lg:gap-20"><p className="eyebrow text-[#a75434]">How we nurture</p><div><h2 className="display-type max-w-4xl text-4xl font-bold leading-[1] text-[#173b2a] sm:text-6xl">A ministry approach rooted in faith, character, and service.</h2><p className="mt-7 max-w-2xl leading-8 text-[#526659]">These four focus areas were previously shared by Seeds of Life Global as its approach to nurturing purpose. Contact the organization for current information about activities and participation.</p></div></div><div className="mt-12 grid gap-px border border-[#173b2a]/15 bg-[#173b2a]/15 md:grid-cols-2">{ministryFocuses.map((focus, index) => <article key={focus.title} className="bg-[#f0eadc] p-7 sm:p-9"><p className="eyebrow text-[#a75434]">0{index + 1}</p><h3 className="display-type mt-5 text-3xl font-bold leading-none text-[#173b2a] sm:text-4xl">{focus.title}</h3><p className="mt-5 max-w-md leading-7 text-[#526659]">{focus.description}</p></article>)}</div></div></section>
 
-      {/* Call to Action */}
-      <div className="py-16" style={{ background: 'linear-gradient(to right, #ffde59, #ffd740)' }}>
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold mb-6" style={{ color: '#356033' }}>Join Us in Making a Difference</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto" style={{ color: '#356033' }}>
-            Whether through volunteering, donations, or partnership, you can help empower 
-            the next generation of purpose-driven leaders.
-          </p>
-          <CTAButton href="/involved" variant="secondary">
-            Start Your Journey
-          </CTAButton>
-        </div>
-      </div>
+    <section className="bg-[#e9e1d0]"><div className="mx-auto grid max-w-[88rem] items-stretch lg:grid-cols-[1.08fr_.92fr]"><div className="relative min-h-[25rem] sm:min-h-[34rem]"><Image src="/programs-background.jpg" alt="Children and adults gathered for an outdoor learning session" fill sizes="(max-width: 1024px) 100vw, 56vw" className="object-cover object-center" /></div><div className="flex flex-col justify-center px-4 py-16 sm:px-6 sm:py-20 lg:px-16 xl:px-24"><p className="eyebrow text-[#a75434]">Who this purpose reaches</p><h2 className="display-type mt-6 text-4xl font-bold leading-[1] text-[#173b2a] sm:text-5xl">Children. Youth. Families. Communities.</h2><p className="mt-7 max-w-md leading-8 text-[#4c6253]">The organization’s purposes make space for learning and communication, practical community skills, environmental action, assistance during disasters, and partnerships that advance education and social development.</p><Link href="/about" className="editorial-link mt-9 text-[#173b2a]">Learn about Seeds of Life <ArrowUpRight aria-hidden="true" className="h-4 w-4" /></Link></div></div></section>
 
-      <Footer />
-    </>
-  )
+    <section className="bg-[#173b2a] px-4 py-20 text-white sm:px-6 sm:py-28 lg:px-8 lg:py-36"><div className="mx-auto max-w-[88rem]"><div className="grid gap-8 border-b border-white/20 pb-12 lg:grid-cols-[.45fr_1fr] lg:gap-20"><p className="eyebrow text-[#e8c957]">How we are organized to serve</p><div><h2 className="display-type max-w-3xl text-4xl font-bold leading-[1] sm:text-6xl">Purpose in action begins with people and place.</h2><p className="mt-6 max-w-2xl leading-8 text-white/70">These areas are drawn from the organization’s corporate purposes. Contact the team for current information about activities and participation.</p></div></div><div className="divide-y divide-white/20">{programAreas.map((area) => <Link key={area.title} href="/programs" className="group grid gap-4 py-7 transition-colors hover:text-[#e8c957] sm:grid-cols-[5rem_1fr_auto] sm:items-start sm:gap-8"><span className="display-type text-3xl text-[#e8c957]">{area.number}</span><div><h3 className="text-xl font-bold uppercase tracking-[.04em] sm:text-2xl">{area.title}</h3><p className="mt-3 max-w-2xl leading-7 text-white/70 group-hover:text-white/80">{area.summary}</p></div><ArrowUpRight aria-hidden="true" className="mt-1 h-5 w-5 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" /></Link>)}</div><Link href="/programs" className="editorial-link mt-10 text-[#e8c957]">Explore all areas of purpose <ArrowUpRight aria-hidden="true" className="h-4 w-4" /></Link></div></section>
+
+    <section className="bg-[#2d5139] px-4 py-24 text-white sm:px-6 sm:py-32 lg:px-8"><div className="mx-auto grid max-w-[88rem] gap-12 lg:grid-cols-[.75fr_1.25fr] lg:gap-20"><p className="eyebrow self-start text-[#e8c957]">Rooted in faith</p><div><p className="display-type max-w-4xl text-5xl font-bold leading-[.95] sm:text-7xl">Rooted in Christ.<br />Growing together.</p><blockquote className="mt-10 max-w-2xl border-l border-[#e8c957] pl-6 text-lg leading-8 text-white/80 sm:text-xl">&quot;I am the vine; you are the branches...&quot;<footer className="mt-3 text-xs font-bold uppercase tracking-[.18em] text-[#e8c957]">John 15:5</footer></blockquote><p className="mt-8 max-w-2xl leading-8 text-white/70">Faith is a foundational part of the identity Seeds of Life Global shares. It sits alongside—rather than replaces—the organization’s nonprofit corporate purposes.</p></div></div></section>
+
+    <section className="mx-auto grid max-w-[88rem] gap-10 px-4 py-20 sm:px-6 sm:py-28 lg:grid-cols-[.9fr_1.1fr] lg:items-end lg:gap-20 lg:px-8 lg:py-36"><div><p className="eyebrow text-[#a75434]">Shared moments</p><h2 className="display-type mt-6 text-4xl font-bold leading-[1] text-[#173b2a] sm:text-6xl">A community is more than a mission statement.</h2><p className="mt-7 max-w-md leading-8 text-[#526659]">The photographs shared by Seeds of Life Global show people gathering, learning, and making space for one another in Cebu.</p><div className="mt-9 flex flex-wrap gap-x-7 gap-y-4"><Link href="/gallery" className="editorial-link text-[#173b2a]">View the gallery <ArrowUpRight aria-hidden="true" className="h-4 w-4" /></Link><Link href="/stories/mt-moriah-opening" className="editorial-link text-[#173b2a]">Read the Mt. Moriah story <ArrowUpRight aria-hidden="true" className="h-4 w-4" /></Link></div></div><figure className="relative min-h-[26rem] overflow-hidden sm:min-h-[34rem]"><Image src="/hero-background.jpg" alt="Seeds of Life Global community gathering outdoors" fill sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover object-[center_57%] transition-transform duration-700 hover:scale-[1.02]" /><figcaption className="absolute bottom-0 left-0 bg-[#173b2a] px-5 py-4 text-xs font-bold uppercase tracking-[.14em] text-white">A shared Seeds of Life Global gathering</figcaption></figure></section>
+
+    <section className="border-y border-[#173b2a]/15 bg-[#dce5cf] px-4 py-20 sm:px-6 sm:py-24 lg:px-8"><div className="mx-auto grid max-w-[88rem] gap-10 lg:grid-cols-[.7fr_1.3fr] lg:items-end"><p className="eyebrow text-[#a75434]">Grow with us</p><div><h2 className="display-type max-w-4xl text-4xl font-bold leading-[1] text-[#173b2a] sm:text-6xl">Bring your care, skills, or partnership to the work.</h2><div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center"><CTAButton href="/involved">Get involved</CTAButton><Link href="/contact" className="editorial-link text-[#173b2a]">Contact the team <ArrowUpRight aria-hidden="true" className="h-4 w-4" /></Link></div></div></div></section>
+  </main><Footer /></>
 }

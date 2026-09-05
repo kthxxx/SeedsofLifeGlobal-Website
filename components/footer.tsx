@@ -1,126 +1,17 @@
 import Link from "next/link"
-import { Mail, Phone, MapPin } from "lucide-react"
-import { contactInfo, tagline } from "@/lib/data"
+import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react"
+import { contactInfo, organizationName, tagline, unitedStatesContactInfo } from "@/lib/data"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
+  const linkClass = "text-sm text-white/70 transition-colors hover:text-[#e8c957]"
 
-  return (
-    <footer className="bg-primary text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid md:grid-cols-4 gap-8">
-          {/* About Section */}
-          <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="bg-secondary rounded-full p-2">
-                <svg
-                  className="h-6 w-6 text-primary"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                  />
-                </svg>
-              </div>
-              <span className="font-bold text-lg">Seeds of Life Global</span>
-            </div>
-            <p className="text-green-100 text-sm leading-relaxed italic">
-              {tagline}
-            </p>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="font-bold text-secondary mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/" className="text-green-100 hover:text-secondary transition-colors">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="text-green-100 hover:text-secondary transition-colors">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/programs" className="text-green-100 hover:text-secondary transition-colors">
-                  Programs
-                </Link>
-              </li>
-              <li>
-                <Link href="/involved" className="text-green-100 hover:text-secondary transition-colors">
-                  Get Involved
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-green-100 hover:text-secondary transition-colors">
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div>
-            <h3 className="font-bold text-secondary mb-4">Contact Us</h3>
-            <ul className="space-y-3">
-              <li className="flex items-start space-x-2">
-                <Mail className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
-                <div className="text-sm">
-                  <a href={`mailto:${contactInfo.email}`} className="text-green-100 hover:text-secondary transition-colors block">
-                    {contactInfo.email}
-                  </a>
-                  <a href={`mailto:${contactInfo.altEmail}`} className="text-green-100 hover:text-secondary transition-colors block">
-                    {contactInfo.altEmail}
-                  </a>
-                </div>
-              </li>
-              <li className="flex items-start space-x-2">
-                <Phone className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
-                <a href={`tel:${contactInfo.phone.replace(/\s/g, '')}`} className="text-green-100 hover:text-secondary transition-colors text-sm">
-                  {contactInfo.phone}
-                </a>
-              </li>
-              <li className="flex items-start space-x-2">
-                <MapPin className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
-                <span className="text-green-100 text-sm">
-                  {contactInfo.address}
-                </span>
-              </li>
-            </ul>
-          </div>
-
-          {/* Connect */}
-          <div>
-            <h3 className="font-bold text-secondary mb-4">Connect With Us</h3>
-            <p className="text-green-100 text-sm mb-3">
-              Stay updated with our latest news and events
-            </p>
-            <Link
-              href="/contact"
-              className="inline-block bg-secondary text-primary px-4 py-2 rounded-full font-semibold hover:bg-yellow-300 transition-colors text-sm"
-            >
-              Get In Touch
-            </Link>
-          </div>
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="border-t border-tertiary mt-8 pt-8 text-center">
-          <p className="text-green-100 text-sm">
-            © {currentYear} Seeds of Life Global. All rights reserved.
-          </p>
-          <p className="text-green-100 text-sm italic mt-2">
-            "I am the vine; you are the branches..." - John 15:5
-          </p>
-        </div>
-      </div>
-    </footer>
-  )
+  return <footer className="overflow-hidden bg-[#122b20] text-white"><div className="mx-auto max-w-[88rem] px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+    <div className="grid gap-12 border-b border-white/15 pb-12 lg:grid-cols-[1.35fr_.65fr_1fr] lg:pb-16">
+      <div><p className="eyebrow text-[#e8c957]">Seeds of Life Global Inc.</p><h2 className="display-type mt-5 max-w-md text-4xl font-bold leading-[.98] sm:text-5xl">{tagline}</h2><Link href="/involved" className="editorial-link mt-8 text-[#e8c957]">Get involved <ArrowUpRight aria-hidden="true" className="h-4 w-4" /></Link></div>
+      <div><h2 className="eyebrow text-[#e8c957]">Explore</h2><nav aria-label="Footer navigation" className="mt-5 grid gap-3"><Link href="/about" className={linkClass}>About</Link><Link href="/programs" className={linkClass}>Areas of purpose</Link><Link href="/gallery" className={linkClass}>Gallery</Link><Link href="/involved" className={linkClass}>Get involved</Link><Link href="/contact" className={linkClass}>Contact</Link></nav></div>
+      <div><h2 className="eyebrow text-[#e8c957]">Contact directly</h2><div className="mt-5 grid gap-4 text-sm text-white/75"><a href={`mailto:${contactInfo.email}`} className="flex min-h-11 items-start gap-3 transition-colors hover:text-[#e8c957]"><Mail aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0" /><span className="break-all">{contactInfo.email}</span></a><div className="grid gap-2"><p className="text-xs font-bold uppercase tracking-[.12em] text-[#e8c957]">Philippines</p><a href={`tel:${contactInfo.phone.replace(/\s/g, "")}`} className="flex min-h-11 items-start gap-3 transition-colors hover:text-[#e8c957]"><Phone aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0" />{contactInfo.phone}</a><p className="flex items-start gap-3"><MapPin aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0" />{contactInfo.address}</p></div><div className="grid gap-2"><p className="text-xs font-bold uppercase tracking-[.12em] text-[#e8c957]">United States</p><a href={`tel:${unitedStatesContactInfo.phone}`} className="flex min-h-11 items-start gap-3 transition-colors hover:text-[#e8c957]"><Phone aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0" />{unitedStatesContactInfo.phone}</a><p className="flex items-start gap-3"><MapPin aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0" />{unitedStatesContactInfo.address}</p></div></div></div>
+    </div>
+    <div className="pt-6 text-xs text-white/50 sm:flex sm:items-center sm:justify-between"><p>© {currentYear} {organizationName}. Non-stock, nonprofit organization based in Sibonga, Cebu.</p><p className="mt-3 sm:mt-0">&quot;I am the vine; you are the branches...&quot; — John 15:5</p></div>
+  </div></footer>
 }

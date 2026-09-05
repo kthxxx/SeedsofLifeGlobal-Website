@@ -1,27 +1,11 @@
-import type React from "react"
+import type { ReactNode } from "react"
 import Link from "next/link"
 
-interface CTAButtonProps {
-  href: string
-  variant?: "primary" | "secondary"
-  children: React.ReactNode
-  className?: string
-}
+interface CTAButtonProps { href: string; variant?: "primary" | "secondary"; children: ReactNode; className?: string }
 
 export function CTAButton({ href, variant = "primary", children, className = "" }: CTAButtonProps) {
-  const baseStyles = "px-8 py-4 rounded-full font-bold text-lg transition-all transform hover:scale-105 shadow-lg inline-block"
-  
-  const variantStyles = variant === "primary"
-    ? { backgroundColor: '#ffde59', color: '#356033' }
-    : { backgroundColor: 'white', color: '#356033' }
-
-  return (
-    <Link 
-      href={href} 
-      className={`${baseStyles} ${className}`}
-      style={variantStyles}
-    >
-      {children}
-    </Link>
-  )
+  const colors = variant === "primary"
+    ? "bg-[#e8c957] text-[#173b2a] hover:bg-[#f2d96f]"
+    : "border border-current bg-transparent text-current hover:bg-white/10"
+  return <Link href={href} className={`cta-button inline-flex min-h-11 items-center justify-center px-5 py-3 text-xs font-bold uppercase tracking-[.14em] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#e8c957] ${colors} ${className}`}>{children}</Link>
 }

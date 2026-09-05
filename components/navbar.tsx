@@ -1,102 +1,53 @@
 "use client"
 
-import { useState } from "react"
-import Link from "next/link"
+import { useEffect, useState } from "react"
 import Image from "next/image"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
+
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/programs", label: "Programs" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/contact", label: "Contact" },
+]
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+  const pathname = usePathname()
 
-  const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/programs", label: "Programs" },
-    { href: "/gallery", label: "Gallery" },
-    { href: "/involved", label: "Get Involved" },
-    { href: "/contact", label: "Contact" }
-  ]
+  useEffect(() => {
+    const closeOnEscape = (event: KeyboardEvent) => { if (event.key === "Escape") setIsOpen(false) }
+    window.addEventListener("keydown", closeOnEscape)
+    return () => window.removeEventListener("keydown", closeOnEscape)
+  }, [])
 
-  return (
-    <nav className="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3">
-            {/* Try to load the logo, if it fails, show fallback */}
-            <div className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0" style={{ backgroundColor: '#356033' }}>
-              <Image 
-                src="/logo.png" 
-                alt="Seeds of Life Global Logo" 
-                fill
-                className="object-contain"
-                onError={(e) => {
-                  // If logo fails to load, hide the image and show icon fallback
-                  e.currentTarget.style.display = 'none';
-                }}
-              />
-            </div>
-            <span className="text-2xl font-bold" style={{ color: '#356033' }}>
-              Seeds of Life <span style={{ color: '#467a63' }}>Global</span>
-            </span>
-          </Link>
+  useEffect(() => {
+    const updateScrollState = () => setIsScrolled(window.scrollY > 18)
+    updateScrollState()
+    window.addEventListener("scroll", updateScrollState, { passive: true })
+    return () => window.removeEventListener("scroll", updateScrollState)
+  }, [])
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="font-semibold transition-colors hover:opacity-80"
-                style={{ color: '#356033' }}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Link
-              href="/contact"
-              className="px-6 py-2 rounded-full font-bold transition-all hover:opacity-90"
-              style={{ backgroundColor: '#ffde59', color: '#356033' }}
-            >
-              Donate Now
-            </Link>
-          </div>
+  const linkClass = (href: string) => `inline-flex min-h-11 items-center px-2 text-xs font-bold uppercase tracking-[.11em] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#173b2a] ${pathname === href ? "text-[#173b2a]" : "text-[#536759] hover:text-[#173b2a]"}`
 
-          {/* Mobile menu button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden transition-colors hover:opacity-80"
-            style={{ color: '#356033' }}
-          >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
-        </div>
+  return <header className={`fixed inset-x-0 top-0 z-50 border-b backdrop-blur transition-[background-color,box-shadow,border-color] duration-500 ${isScrolled ? "border-[#173b2a]/15 bg-[#f7f3e9]/98 shadow-[0_5px_22px_rgba(23,59,42,.08)]" : "border-transparent bg-[#f7f3e9]/82"}`}>
+    <nav aria-label="Primary navigation" className="mx-auto flex h-[4.75rem] max-w-[88rem] items-center justify-between px-4 sm:px-6 lg:px-8">
+      <Link href="/" className="flex min-w-0 items-center gap-2.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#173b2a]">
+        <Image src="/logo.png" alt="Seeds of Life Global Inc." width={44} height={44} className="h-10 w-10 shrink-0 object-contain" priority />
+        <span className="truncate text-sm font-bold tracking-[-.02em] text-[#173b2a] sm:text-base">Seeds of Life Global<span className="hidden xl:inline"> Inc.</span></span>
+      </Link>
+      <div className="hidden items-center gap-3 lg:flex">
+        {navLinks.map((link) => <Link key={link.href} href={link.href} className={linkClass(link.href)} aria-current={pathname === link.href ? "page" : undefined}>{link.label}</Link>)}
+        <Link href="/involved" className={`ml-2 inline-flex min-h-11 items-center bg-[#173b2a] px-4 text-xs font-bold uppercase tracking-[.13em] text-white transition-colors hover:bg-[#28533d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#173b2a] ${pathname === "/involved" ? "bg-[#28533d]" : ""}`} aria-current={pathname === "/involved" ? "page" : undefined}>Get involved</Link>
       </div>
-
-      {/* Mobile Navigation */}
-      {isOpen && (
-        <div className="md:hidden bg-white border-t border-green-100">
-          <div className="px-4 pt-2 pb-4 space-y-2">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="block py-2 text-primary hover:text-tertiary font-semibold transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Link
-              href="/contact"
-              className="block bg-secondary text-primary px-6 py-2 rounded-full font-bold hover:bg-yellow-300 transition-colors text-center mt-4"
-              onClick={() => setIsOpen(false)}
-            >
-              DOnate Now!
-            </Link>
-          </div>
-        </div>
-      )}
+      <button type="button" className="flex min-h-11 min-w-11 items-center justify-center text-[#173b2a] lg:hidden" onClick={() => setIsOpen((open) => !open)} aria-expanded={isOpen} aria-controls="mobile-navigation" aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}>
+        {isOpen ? <X aria-hidden="true" className="h-6 w-6" /> : <Menu aria-hidden="true" className="h-6 w-6" />}
+      </button>
     </nav>
-  )
+    {isOpen && <div id="mobile-navigation" className="border-t border-[#173b2a]/10 bg-[#f7f3e9] px-4 py-4 lg:hidden"><div className="mx-auto grid max-w-[88rem] gap-1">{navLinks.map((link) => <Link key={link.href} href={link.href} className={linkClass(link.href)} onClick={() => setIsOpen(false)} aria-current={pathname === link.href ? "page" : undefined}>{link.label}</Link>)}<Link href="/involved" className="mt-3 inline-flex min-h-11 items-center justify-center bg-[#173b2a] px-4 text-xs font-bold uppercase tracking-[.13em] text-white" onClick={() => setIsOpen(false)} aria-current={pathname === "/involved" ? "page" : undefined}>Get involved</Link></div></div>}
+  </header>
 }
