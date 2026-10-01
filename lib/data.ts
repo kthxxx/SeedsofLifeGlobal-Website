@@ -1,10 +1,10 @@
 export const organization = {
   name: "Seeds of Life Global Inc.",
-  type: "Philippine non-stock, nonprofit corporation",
+  type: "Philippine non-stock, non-profit corporation",
   classification: "Education / other education services",
   location: "Poblacion, Sibonga, Cebu, Philippines",
   purposeSummary:
-    "Organized for educational, social-development, livelihood, environmental, charitable, and humanitarian activities.",
+    "Our purpose brings together education, community development, practical skills, environmental care, and support for families in need.",
 }
 
 export const organizationName = organization.name
@@ -76,7 +76,7 @@ export const currentInitiative = {
   title: "Mentored Training Practicum for Emerging Trainers",
   period: "September–December 2026",
   summary:
-    "This planned initiative is designed to prepare Regional Leaders through hands-on co-facilitation alongside experienced trainers, so they can train and support Children’s Ministry Teachers in their own communities.",
+    "We plan to prepare regional leaders through hands-on co-facilitation with experienced trainers, equipping them to train and support children’s ministry teachers in their own communities.",
   skills: [
     "Lesson planning and facilitation",
     "Communication and storytelling",
@@ -94,28 +94,29 @@ export const contactInfo = {
 
 export const unitedStatesContactInfo = {
   phone: "626-644-4862",
-  address: "215 N 2nd Avenue, Ste E, Upland, CA 91886",
+  address: "215 N 2nd Avenue, Ste E, Upland, CA 91786",
 }
 
 export const currentImpact = {
   summary:
-    "Seeds of Life Global is working with children, families, leaders, churches, and communities in Sibonga, Cebu and across the Philippines and Asia.",
+    "We work with children, families, leaders, churches, and communities in Sibonga, Cebu and across the Philippines and Asia.",
+  sourceNote: "Figures supplied by Seeds of Life Global for its brand guide. Reporting period not specified.",
   stats: [
-    { value: "1,000+", label: "children directly served", detail: "Through children’s ministry and feeding programs in communities around Sibonga, Cebu." },
+    { value: "1,000+", label: "children who participated", detail: "In children’s ministry and feeding programs around Sibonga, Cebu." },
     { value: "500+", label: "leaders trained", detail: "Teachers, pastors, and youth leaders trained in the Community Bible Study Children and Youth curriculum." },
-    { value: "100+", label: "communities reached", detail: "Churches, schools, and communities reached across the Philippines and Asia." },
+    { value: "100+", label: "churches, schools & communities reached", detail: "Across the Philippines and parts of Asia." },
   ],
   program: {
     title: "Community Bible Study classes",
     status: "Ongoing in Sibonga, Cebu",
     description:
-      "Bible studies and children’s Bible studies that serve children, youth, and their parents.",
+      "Our Community Bible Study classes in Sibonga, Cebu bring children, youth, and parents together to learn and grow in faith.",
   },
   mtMoriah: {
     title: "Mt. Moriah Campground",
     status: "In construction",
     description:
-      "One cabin is under construction and is already able to host gatherings and camping activities. The next step is to continue construction.",
+      "We are continuing construction on a cabin at Mt. Moriah. It can already welcome gatherings and camping activities as we work toward the next stage.",
   },
   partners: [
     "Community Bible Study",
@@ -132,7 +133,7 @@ export const programAreas = [
     title: "Children & youth development",
     shortTitle: "Children & youth",
     summary:
-      "The corporation is organized to conduct seminars, workshops, and training sessions for children and youth, especially in literacy and communication skills.",
+      "We aim to help children and young people build literacy and communication skills through seminars, workshops, and training.",
     details: ["Seminars, workshops, and training sessions", "Literacy skills", "Communication skills"],
   },
   {
@@ -140,7 +141,7 @@ export const programAreas = [
     title: "Livelihood & community skills",
     shortTitle: "Livelihood",
     summary:
-      "The corporation is organized to provide backyard gardening and livelihood training for underprivileged communities.",
+      "We aim to help families build practical skills through backyard gardening and livelihood training, including soap making and rug making.",
     details: ["Backyard gardening", "Livelihood training", "Soap making and rug making"],
   },
   {
@@ -148,7 +149,7 @@ export const programAreas = [
     title: "Community & environment",
     shortTitle: "Community & environment",
     summary:
-      "The corporation is organized to promote community-development and environmental projects.",
+      "Our vision includes bringing neighbors together to care for shared spaces through community projects, clean-up drives, and tree planting.",
     details: ["Community-development projects", "Clean-up drives", "Tree planting"],
   },
   {
@@ -156,7 +157,7 @@ export const programAreas = [
     title: "Humanitarian assistance",
     shortTitle: "Humanitarian assistance",
     summary:
-      "The corporation is organized to undertake charitable activities and humanitarian assistance for disadvantaged families during disasters.",
+      "We seek to support families facing hardship during disasters through charitable activities and humanitarian assistance.",
     details: ["Charitable activities", "Humanitarian assistance", "Support for disadvantaged families during disasters"],
   },
   {
@@ -164,7 +165,7 @@ export const programAreas = [
     title: "Educational & social partnerships",
     shortTitle: "Partnerships",
     summary:
-      "The corporation is authorized to partner with local organizations, schools, and government agencies to advance educational and social-development programs.",
+      "We welcome opportunities to work with local organizations, schools, and government agencies to support education and community development.",
     details: ["Local organizations", "Schools and government agencies", "Educational and social-development programs"],
   },
 ]

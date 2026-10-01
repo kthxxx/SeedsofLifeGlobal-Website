@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Rebuild the homepage as a concise documentary-editorial nonprofit experience that preserves existing content, routes, and functionality while improving hierarchy, responsiveness, accessibility, and performance.
+**Goal:** Rebuild the homepage as a concise documentary-editorial non-profit experience that preserves existing content, routes, and functionality while improving hierarchy, responsiveness, accessibility, and performance.
 
 **Architecture:** Keep the existing Next.js App Router and Tailwind CSS 4 architecture. Compose the homepage from server-rendered semantic sections backed by `lib/data.ts`, keep interactive behavior isolated in the existing client-side `Navbar`, and use shared CSS primitives for repeated editorial treatments. Add a dependency-free verification script that checks the rendered homepage contract against a running local server.
 
@@ -132,7 +132,7 @@ Remove `PartnerLogoLoop` and `ministryFocuses` from the homepage. Do not delete 
 
 - [ ] **Step 2: Implement the split documentary hero**
 
-Replace the full-overlay hero with a two-part `section#home-hero`. The content side must contain the existing location eyebrow, one `h1`, the existing nonprofit-purpose language, `/programs` and `/about` actions, and a downward link to `#who-we-are`. The image side must render `/hero-background.jpg` with the existing descriptive alt text and `priority`.
+Replace the full-overlay hero with a two-part `section#home-hero`. The content side must contain the existing location eyebrow, one `h1`, the existing non-profit-purpose language, `/programs` and `/about` actions, and a downward link to `#who-we-are`. The image side must render `/hero-background.jpg` with the existing descriptive alt text and `priority`.
 
 Use this semantic structure:
 
@@ -143,7 +143,7 @@ Use this semantic structure:
     <h1 id="home-hero-title" className="display-type home-hero__title">
       Planting seeds.<br />Nurturing lives.
     </h1>
-    <p className="home-hero__copy">A Christian nonprofit supporting learning, training, community development, livelihood, environmental care, humanitarian assistance, and partnership.</p>
+    <p className="home-hero__copy">A Christian non-profit supporting learning, training, community development, livelihood, environmental care, humanitarian assistance, and partnership.</p>
     <div className="home-hero__actions">
       <CTAButton href="/programs">Explore our work</CTAButton>
       <Link href="/about" className="editorial-link text-white">Who we are <ArrowUpRight aria-hidden="true" className="h-4 w-4" /></Link>
@@ -315,7 +315,7 @@ git commit -m "feat: improve mobile navigation accessibility"
 
 - [ ] **Step 1: Restructure the footer as a clearer trust block**
 
-Retain the organization name, tagline, Get involved link, navigation, email, both telephone numbers, both addresses, nonprofit statement, and John 15:5 reference. Use a large organization statement followed by a restrained two-column information area rather than a dense three-column link farm.
+Retain the organization name, tagline, Get involved link, navigation, email, both telephone numbers, both addresses, non-profit statement, and John 15:5 reference. Use a large organization statement followed by a restrained two-column information area rather than a dense three-column link farm.
 
 Keep these href contracts unchanged:
 
@@ -345,7 +345,7 @@ Expected: `Homepage contract verified`.
 
 ```bash
 git add components/footer.tsx
-git commit -m "feat: refine nonprofit footer"
+git commit -m "feat: refine non-profit footer"
 ```
 
 ---

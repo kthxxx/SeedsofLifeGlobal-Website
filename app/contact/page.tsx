@@ -1,9 +1,11 @@
+import Image from "next/image"
 import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react"
 import { Footer } from "@/components/footer"
 import { Navbar } from "@/components/navbar"
 import { ContactForm } from "@/components/contact-form"
-import { contactInfo, organizationName, unitedStatesContactInfo } from "@/lib/data"
+import { contactInfo, unitedStatesContactInfo } from "@/lib/data"
 import { pageMetadata } from "@/lib/page-metadata"
+import { isContactTopic } from "@/lib/contact-topics"
 
 export const metadata = pageMetadata(
   "Contact",
@@ -11,25 +13,33 @@ export const metadata = pageMetadata(
   "/contact",
 )
 
-export default function ContactPage() {
+export default async function ContactPage({ searchParams }: { searchParams: Promise<{ topic?: string | string[] }> }) {
+  const { topic: requestedTopic } = await searchParams
+  const topic = typeof requestedTopic === "string" && isContactTopic(requestedTopic) ? requestedTopic : undefined
   return (
     <>
       <Navbar />
       <main id="main-content" className="overflow-hidden bg-[#f7f3e9] pt-[4.75rem]">
-        <section className="bg-[#173b2a] px-4 py-20 text-white sm:px-6 sm:py-28 lg:px-8 lg:py-36">
+        <section className="relative isolate overflow-hidden bg-[#173b2a] px-4 py-20 text-white sm:px-6 sm:py-28 lg:px-8 lg:py-36">
+          <Image src="/photos/community-care.webp" alt="A community member sharing food with children" fill priority sizes="100vw" className="-z-20 object-cover object-[center_45%]" />
+          <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(10,31,21,.94)_0%,rgba(10,31,21,.72)_50%,rgba(10,31,21,.35)_100%)]" />
           <div className="mx-auto max-w-[88rem]">
             <p className="eyebrow text-[#e8c957]">Contact</p>
             <h1 className="display-type mt-6 max-w-4xl text-5xl font-bold leading-[.92] sm:text-7xl lg:text-[clamp(5rem,9vw,8.5rem)]">Let&apos;s begin<br />with a conversation.</h1>
-            <p className="mt-8 max-w-xl text-lg leading-8 text-white/75">Ask about areas of purpose, volunteering, partnerships, support or giving, and community activities.</p>
+            <p className="mt-8 max-w-xl text-lg leading-8 text-white/85">Ask about areas of purpose, volunteering, partnerships, support or giving, and community activities.</p>
           </div>
         </section>
 
         <section className="mx-auto grid max-w-[88rem] gap-12 px-4 py-20 sm:px-6 sm:py-28 lg:grid-cols-[.42fr_1fr] lg:gap-20 lg:px-8 lg:py-36">
           <div>
             <p className="eyebrow text-[#a75434]">Send an inquiry</p>
-            <p className="mt-6 max-w-xs text-lg leading-8 text-[#526659]">Use the form to send a message directly to {organizationName}, or use the contact details below.</p>
+            <p className="mt-6 max-w-xs text-lg leading-8 text-[#526659]">Send us a message using the form, or reach out through the contact details below. We would love to hear from you.</p>
+            <figure className="relative mt-9 aspect-[4/5] max-w-sm overflow-hidden bg-[#dce5cf]">
+              <Image src="/photos/community-portrait.webp" alt="A woman standing with children outside a home" fill sizes="(max-width: 1024px) 100vw, 34vw" className="object-cover" />
+              <figcaption className="absolute inset-x-0 bottom-0 bg-[#173b2a]/90 px-4 py-3 text-sm text-white">A moment with children in our community</figcaption>
+            </figure>
           </div>
-          <ContactForm />
+          <ContactForm key={topic ?? "general"} initialTopic={topic} />
         </section>
 
         <section className="mx-auto grid max-w-[88rem] gap-12 px-4 pb-20 sm:px-6 sm:pb-28 lg:grid-cols-[.42fr_1fr] lg:gap-20 lg:px-8 lg:pb-36">

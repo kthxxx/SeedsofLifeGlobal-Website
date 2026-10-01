@@ -2,13 +2,13 @@
 
 ## Objective
 
-Redesign the Seeds of Life Global homepage as a warm, trustworthy, human, and globally credible nonprofit experience. The page should help visitors understand the organization, see credible evidence of its work, explore its programs and community story, and find a clear way to participate.
+Redesign the Seeds of Life Global homepage as a warm, trustworthy, human, and globally credible non-profit experience. The page should help visitors understand the organization, see credible evidence of its work, explore its programs and community story, and find a clear way to participate.
 
 The redesign will preserve existing routes, SEO metadata, contact behavior, content provenance, and verified organizational claims. It will use only content and imagery already present in the repository, with minor restructuring for clarity.
 
 ## Approved visual direction
 
-The homepage will use a documentary-editorial nonprofit aesthetic rather than a commercial landing-page or SaaS pattern. Its character will come from real community photography, strong serif display typography, generous negative space, asymmetric composition, and restrained organic details.
+The homepage will use a documentary-editorial non-profit aesthetic rather than a commercial landing-page or SaaS pattern. Its character will come from real community photography, strong serif display typography, generous negative space, asymmetric composition, and restrained organic details.
 
 The existing brand system remains authoritative:
 
@@ -42,7 +42,7 @@ The hero will use an asymmetric split composition on large screens: mission cont
 Content will be drawn from the existing brand and organization copy:
 
 - Headline: “Planting seeds. Nurturing lives.”
-- Supporting copy: a concise restructuring of the existing nonprofit purpose summary.
+- Supporting copy: a concise restructuring of the existing non-profit purpose summary.
 - Primary action: `/programs`, labeled “Explore our work.”
 - Secondary action: `/about`, labeled “Who we are.”
 
@@ -108,7 +108,7 @@ Mobile navigation will become a spacious overlay or full-width panel with:
 - route-change closure;
 - comfortable touch targets.
 
-The footer will retain the organization name, tagline, Philippine and United States contact details, navigation, nonprofit description, and scripture reference. Social or legal links will only be added if verified destinations already exist; none will be fabricated for this redesign.
+The footer will retain the organization name, tagline, Philippine and United States contact details, navigation, non-profit description, and scripture reference. Social or legal links will only be added if verified destinations already exist; none will be fabricated for this redesign.
 
 ## Reusable components and implementation boundaries
 
