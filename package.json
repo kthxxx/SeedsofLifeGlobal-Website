@@ -46,7 +46,7 @@
     "embla-carousel-react": "8.5.1",
     "input-otp": "1.4.1",
     "lucide-react": "^0.454.0",
-    "next": "^16.1.1",
+    "next": "~16.3.8",
     "next-themes": "^0.4.6",
     "react": "^19.2.3",
     "react-day-picker": "9.8.0",
@@ -66,7 +66,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9.39.5",
-    "eslint-config-next": "^16.3.3",
+    "eslint-config-next": "~16.3.8",
     "playwright": "^1.63.0",
     "postcss": "^8.5",
     "tailwindcss": "^4.1.9",
@@ -74,6 +74,6 @@
     "typescript": "^5"
   },
   "allowScripts": {
-    "sharp@0.35.4": true
+    "sharp@0.35.5": true
   }
 }
