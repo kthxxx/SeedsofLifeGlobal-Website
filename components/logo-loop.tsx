@@ -15,6 +15,7 @@ type LogoLoopProps = {
   logoHeight?: number
   gap?: number
   pauseOnHover?: boolean
+  paused?: boolean
   hoverSpeed?: number
   fadeOut?: boolean
   fadeOutColor?: string
@@ -65,7 +66,7 @@ function useImageLoader(seqRef: React.RefObject<HTMLElement | null>, onLoad: () 
   }, [dependencies, onLoad, seqRef])
 }
 
-function useAnimationLoop(trackRef: React.RefObject<HTMLDivElement | null>, targetVelocity: number, seqWidth: number, seqHeight: number, isHovered: boolean, hoverSpeed: number | undefined, isVertical: boolean) {
+function useAnimationLoop(trackRef: React.RefObject<HTMLDivElement | null>, targetVelocity: number, seqWidth: number, seqHeight: number, isHovered: boolean, hoverSpeed: number | undefined, isVertical: boolean, paused: boolean) {
   const animationFrame = useRef<number | null>(null)
   const lastTimestamp = useRef<number | null>(null)
   const offset = useRef(0)
@@ -74,6 +75,7 @@ function useAnimationLoop(trackRef: React.RefObject<HTMLDivElement | null>, targ
   useEffect(() => {
     const track = trackRef.current
     if (!track) return
+    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)")
     const sequenceSize = isVertical ? seqHeight : seqWidth
 
     const setTransform = () => {
@@ -86,6 +88,7 @@ function useAnimationLoop(trackRef: React.RefObject<HTMLDivElement | null>, targ
     }
 
     const animate = (timestamp: number) => {
+      if (motionPreference.matches || paused) return
       if (lastTimestamp.current === null) lastTimestamp.current = timestamp
       const deltaTime = Math.max(0, timestamp - lastTimestamp.current) / 1000
       lastTimestamp.current = timestamp
@@ -99,16 +102,23 @@ function useAnimationLoop(trackRef: React.RefObject<HTMLDivElement | null>, targ
       animationFrame.current = requestAnimationFrame(animate)
     }
 
-    animationFrame.current = requestAnimationFrame(animate)
+    const syncMotionPreference = () => {
+      if (animationFrame.current !== null) cancelAnimationFrame(animationFrame.current)
+      lastTimestamp.current = null
+      if (!motionPreference.matches && !paused) animationFrame.current = requestAnimationFrame(animate)
+    }
+    syncMotionPreference()
+    motionPreference.addEventListener("change", syncMotionPreference)
     return () => {
+      motionPreference.removeEventListener("change", syncMotionPreference)
       if (animationFrame.current !== null) cancelAnimationFrame(animationFrame.current)
       animationFrame.current = null
       lastTimestamp.current = null
     }
-  }, [hoverSpeed, isHovered, isVertical, seqHeight, seqWidth, targetVelocity, trackRef])
+  }, [hoverSpeed, isHovered, isVertical, seqHeight, seqWidth, targetVelocity, trackRef, paused])
 }
 
-export const LogoLoop = memo(function LogoLoop({ logos, speed = 120, direction = "left", width = "100%", logoHeight = 28, gap = 32, pauseOnHover, hoverSpeed, fadeOut = false, fadeOutColor, scaleOnHover = false, renderItem, ariaLabel = "Partner logos", className, style }: LogoLoopProps) {
+export const LogoLoop = memo(function LogoLoop({ logos, speed = 120, direction = "left", width = "100%", logoHeight = 28, gap = 32, pauseOnHover, paused = false, hoverSpeed, fadeOut = false, fadeOutColor, scaleOnHover = false, renderItem, ariaLabel = "Partner logos", className, style }: LogoLoopProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
   const sequenceRef = useRef<HTMLUListElement>(null)
@@ -116,6 +126,7 @@ export const LogoLoop = memo(function LogoLoop({ logos, speed = 120, direction =
   const [sequenceHeight, setSequenceHeight] = useState(0)
   const [copyCount, setCopyCount] = useState(animationConfig.minCopies)
   const [isHovered, setIsHovered] = useState(false)
+  const [isFocused, setIsFocused] = useState(false)
   const isVertical = direction === "up" || direction === "down"
 
   const effectiveHoverSpeed = useMemo(() => hoverSpeed ?? (pauseOnHover === false ? undefined : 0), [hoverSpeed, pauseOnHover])
@@ -142,23 +153,23 @@ export const LogoLoop = memo(function LogoLoop({ logos, speed = 120, direction =
 
   useResizeObserver(updateDimensions, [containerRef, sequenceRef], [logos, gap, logoHeight, isVertical])
   useImageLoader(sequenceRef, updateDimensions, [logos, gap, logoHeight, isVertical])
-  useAnimationLoop(trackRef, targetVelocity, sequenceWidth, sequenceHeight, isHovered, effectiveHoverSpeed, isVertical)
+  useAnimationLoop(trackRef, targetVelocity, sequenceWidth, sequenceHeight, isHovered, effectiveHoverSpeed, isVertical, paused || isFocused)
 
-  const renderLogo = useCallback((item: LogoItem, key: Key) => {
+  const renderLogo = useCallback((item: LogoItem, key: Key, duplicate: boolean) => {
     if (renderItem) return <li className="logoloop__item" key={key}>{renderItem(item, key)}</li>
     const isNodeItem = "node" in item
     const content = isNodeItem
       ? <span className="logoloop__node" aria-hidden={Boolean(item.href && !item.ariaLabel)}>{item.node}</span>
       : <img src={item.src} srcSet={item.srcSet} sizes={item.sizes} width={item.width} height={item.height} alt={item.alt ?? ""} title={item.title} loading="lazy" decoding="async" draggable={false} />
     const label = isNodeItem ? (item.ariaLabel ?? item.title) : (item.ariaLabel ?? item.alt ?? item.title)
-    return <li className="logoloop__item" key={key}>{item.href ? <a className="logoloop__link" href={item.href} aria-label={label || "Partner link"} target="_blank" rel="noreferrer noopener">{content}</a> : content}</li>
+    return <li className="logoloop__item" key={key}>{item.href ? <a className="logoloop__link" href={item.href} aria-label={label || "Partner link"} tabIndex={duplicate ? -1 : undefined} target="_blank" rel="noreferrer noopener">{content}</a> : content}</li>
   }, [renderItem])
 
-  const lists = useMemo(() => Array.from({ length: copyCount }, (_, copyIndex) => <ul className="logoloop__list" key={`copy-${copyIndex}`} aria-hidden={copyIndex > 0} ref={copyIndex === 0 ? sequenceRef : undefined}>{logos.map((item, itemIndex) => renderLogo(item, `${copyIndex}-${itemIndex}`))}</ul>), [copyCount, logos, renderLogo])
-  const rootClassName = ["logoloop", isVertical ? "logoloop--vertical" : "logoloop--horizontal", fadeOut && "logoloop--fade", scaleOnHover && "logoloop--scale-hover", className].filter(Boolean).join(" ")
+  const lists = useMemo(() => Array.from({ length: copyCount }, (_, copyIndex) => <ul className="logoloop__list" key={`copy-${copyIndex}`} aria-hidden={copyIndex > 0} ref={copyIndex === 0 ? sequenceRef : undefined}>{logos.map((item, itemIndex) => renderLogo(item, `${copyIndex}-${itemIndex}`, copyIndex > 0))}</ul>), [copyCount, logos, renderLogo])
+  const rootClassName = ["logoloop", isVertical ? "logoloop--vertical" : "logoloop--horizontal", (paused || isFocused) && "logoloop--paused", fadeOut && "logoloop--fade", scaleOnHover && "logoloop--scale-hover", className].filter(Boolean).join(" ")
   const rootStyle = { width: isVertical && toCssLength(width) === "100%" ? undefined : (toCssLength(width) ?? "100%"), "--logoloop-gap": `${gap}px`, "--logoloop-logoHeight": `${logoHeight}px`, ...(fadeOutColor ? { "--logoloop-fadeColor": fadeOutColor } : {}), ...style } as CSSProperties
 
-  return <div ref={containerRef} className={rootClassName} style={rootStyle} role="region" aria-label={ariaLabel}><div className="logoloop__track" ref={trackRef} onMouseEnter={() => effectiveHoverSpeed !== undefined && setIsHovered(true)} onMouseLeave={() => effectiveHoverSpeed !== undefined && setIsHovered(false)}>{lists}</div></div>
+  return <div ref={containerRef} className={rootClassName} style={rootStyle} role="region" aria-label={ariaLabel} onFocusCapture={event => { if ((event.target as HTMLElement).matches(":focus-visible")) setIsFocused(true) }} onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget)) setIsFocused(false) }}><div className="logoloop__track" ref={trackRef} onMouseEnter={() => window.matchMedia("(hover: hover) and (pointer: fine)").matches && effectiveHoverSpeed !== undefined && setIsHovered(true)} onMouseLeave={() => effectiveHoverSpeed !== undefined && setIsHovered(false)}>{lists}</div></div>
 })
 
 export default LogoLoop

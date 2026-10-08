@@ -18,6 +18,7 @@ const actions = [
   { number: "04", title: "Support", text: "Help support our non-profit mission through a gift, grant, or contribution. Contact us to discuss giving and receive payment details directly from our team.", label: "Ask about giving", topic: "give" },
 ]
 
+
 export default function GetInvolvedPage() {
   return <><Navbar /><main id="main-content" className="overflow-hidden bg-[#f7f3e9] pt-[4.75rem]">
     <section className="relative isolate overflow-hidden bg-[#173b2a] px-4 py-20 text-white sm:px-6 sm:py-28 lg:px-8 lg:py-36"><Image src="/photos/outdoor-volunteers.webp" alt="Community members standing together outdoors" fill priority sizes="100vw" className="-z-20 object-cover object-[center_58%]" /><div className="absolute inset-0 -z-10 bg-[#10291e]/85" /><div className="mx-auto max-w-[88rem]"><p className="eyebrow text-[#e8c957]">Get involved</p><h1 className="display-type mt-6 max-w-4xl text-5xl font-bold leading-[.92] sm:text-7xl lg:text-[clamp(5rem,9vw,8.5rem)]">Grow something<br />that matters.</h1><p className="mt-8 max-w-xl text-lg leading-8 text-white/80">Bring your questions, time, skills, care, or partnership to a conversation with Seeds of Life Global.</p></div></section>
