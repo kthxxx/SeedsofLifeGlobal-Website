@@ -37,7 +37,7 @@ export function Navbar() {
   return <header className={`fixed inset-x-0 top-0 z-50 border-b backdrop-blur transition-[background-color,box-shadow,border-color] duration-500 ${isScrolled ? "border-[#173b2a]/15 bg-[#f7f3e9]/98 shadow-[0_5px_22px_rgba(23,59,42,.08)]" : "border-transparent bg-[#f7f3e9]/82"}`}>
     <nav aria-label="Primary navigation" className="mx-auto flex h-[4.75rem] max-w-[88rem] items-center justify-between px-4 sm:px-6 lg:px-8">
       <Link href="/" className="flex min-w-0 items-center gap-2.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#173b2a]">
-        <Image src="/logo.png" alt="Seeds of Life Global Inc." width={44} height={44} className="h-10 w-10 shrink-0 object-contain" priority />
+        <Image src="/logo.png" alt="Seeds of Life Global Inc." width={44} height={44} className="h-10 w-10 shrink-0 object-contain mix-blend-multiply" priority />
         <span className="truncate text-sm font-bold tracking-[-.02em] text-[#173b2a] sm:text-base">Seeds of Life Global<span className="hidden xl:inline"> Inc.</span></span>
       </Link>
       <div className="hidden items-center gap-3 lg:flex">

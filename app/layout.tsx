@@ -6,6 +6,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.seedsoflifeglob
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  icons: { icon: "/logo.png" },
   title: {
     default: "Seeds of Life Global Inc.",
     template: "%s | Seeds of Life Global Inc.",
